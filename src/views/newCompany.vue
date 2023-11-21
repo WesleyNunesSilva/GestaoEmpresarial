@@ -1,5 +1,8 @@
 <template>
     <div>
+      <div v-show="registeredSuccessfully" class="alert alert-success" role="alert">
+        Cadastrado com sucesso
+      </div>
       <TheHeader />
   
       <div class="d-flex align-items-center justify-content-center vh-100 bg-body-color">
@@ -33,13 +36,9 @@
             <button type="submit" class="btn btn-primary">Adicionar Empresa</button>
           </div>
         </form>
-  
-        <div>
-          <div v-show="registeredSuccessfully" class="alert alert-success" role="alert">
-            Cadastrado com sucesso
-          </div>
-        </div>
       </div>
+
+      
     </div>
   </template>
 
@@ -77,7 +76,9 @@
       this.registeredSuccessfully = true;
       setTimeout(() => {
         this.registeredSuccessfully = false;
+        this.$router.push('/');
       }, 2000);
+      
     } catch (error) {
       // Manipule os erros aqui
       console.error("Erro na requisição:", error);
